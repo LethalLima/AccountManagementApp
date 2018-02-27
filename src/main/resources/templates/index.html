@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Accounts</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.3/css/rowReorder.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
+
+    <!--https://cdn.datatables.net/rowreorder/1.2.3/css/rowReorder.dataTables.min.css-->
+    <!--https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css-->
+    <!--<link href="../static/css/account.css" th:href="@{/css/accout.css}" rel="stylesheet" />-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+
+
+    <!--https://code.jquery.com/jquery-1.12.4.js-->
+    <!--https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js-->
+    <!--https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js-->
+    <!--https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js-->
+    <script src="../static/js/account.js" th:src="@{/js/account.js}"></script></head>
+
+<body>
+<h1>Accounts Table</h1>
+<table id="accountsTable" class="display">
+
+    <!-- Header Table -->
+    <thead>
+    <tr>
+        <th>Edit</th>
+        <th>Account</th>
+        <th>Address</th>
+        <th>Bin Notes</th>
+        <th>Attempt One Date</th>
+        <th>Attempt Two Date</th>
+        <th>Attempt Three Date</th>
+        <th>Additional Notes</th>
+    </tr>
+    </thead>
+    <!-- Footer Table -->
+    <tfoot>
+    <tr>
+        <th>Edit</th>
+        <th>Account</th>
+        <th>Address</th>
+        <th>Bin Notes</th>
+        <th>Attempt One Date</th>
+        <th>Attempt Two Date</th>
+        <th>Attempt Three Date</th>
+        <th>Additional Notes</th>
+    </tr>
+    </tfoot>
+</table>
+
+
+<div id="editAccountDialog"></div>
+</body>
+</html>
