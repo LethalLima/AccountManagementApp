@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Edit Account</title>
 </head>
 <body>
-<table id="myTableId">
-    <thead>
-
-    </thead>
-    <tbody>
-    <tr>
-        <td>Account Number</td>
-        <td><${account?.accountNumber}</td>
-    </tr>
-    <tr>
-        <td>Address</td>
-        <td><${account?.address}</td>
-    </tr>
-    <tr>
-        <td>Bin Notes</td>
-        <td><${account?.binNotes}</td>
-    </tr>
-    </tbody>
-</table>
+<form id="editAccountForm" th:method="put" th:action="@{/account/{accountNumber}(accountNumber=${account.accountNumber})}">
+    <table id="myTableId">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Account Number</td>
+            <td>
+                <label>
+                    <input th:type="text" th:name="accountNumber" th:value="${account.accountNumber}" th:readonly="true"/>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <label>
+                    <input th:type="text" th:name="address" th:value="${account.address}"/>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td>Bin Notes</td>
+            <td>
+                <label>
+                    <input th:type="text" th:name="binNotes" th:value="${account.binNotes}"/>
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <label>
+        <input th:type="submit" th:value="${'Submit Edit'}"/>
+    </label>
+</form>
 </body>
 </html>
