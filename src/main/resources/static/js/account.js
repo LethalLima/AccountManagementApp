@@ -46,12 +46,9 @@ $(document).ready(function () {
             {'data': 'attemptThreeDate'},
             {'data': 'notes'}
         ],
-        // 'fnCreatedRow': function( nRow, aData, iDataIndex ) {
-        //     $(nRow).attr('id', 'row-' + aData.accountNumber);
-        // }
-        // 'fnDrawCallback': function(oSettings) {
-        //     componentHandler.upgradeDOM();
-        // }
+        'fnCreatedRow': function( nRow, aData, iDataIndex ) {
+            $(nRow).attr('id', 'row-' + aData.accountNumber);
+        }
     });
 
     // $('#accountsTable').find('a').click( function (event) {
