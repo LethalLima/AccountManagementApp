@@ -9,16 +9,6 @@ $(document).ready(function () {
         // "aoColumnDefs": [{ "bSortable": true, "aTargets": [ 1,7 ] } ],
         // 'order': [[ 0, 'asc' ]],
         'columns': [
-            // {
-            //     'targets': [0],
-            //     'sortable': false,
-            //     // 'data': 'data',
-            //     'render': function (data, type, account) {
-            //         return '<a href="#" id="edit-' + account.accountNumber + '"' + ' onclick="fnEditAccount(\'' + account.accountNumber + '\'); return false;"><span class="glyphicon glyphicon-edit"></span></a>';
-            //     },
-            //     'className': 'text-center'
-            //
-            // },
             {
                 'data': 'accountNumber',
                 'render': function (accountNumber, type, account) {
@@ -28,9 +18,6 @@ $(document).ready(function () {
             },
             {
                 'data': 'address',
-                // 'render': function ( address, type, account ) {
-                //     return '<span>' + address + '</span>';
-                // },
                 'fnCreatedCell': function (nCol, address, account, iRow, iCol) {
                     $(nCol).attr('id', 'address-' + account.accountNumber);
                 }
@@ -44,6 +31,21 @@ $(document).ready(function () {
             {'data': 'attemptOneDate'},
             {'data': 'attemptTwoDate'},
             {'data': 'attemptThreeDate'},
+            {
+                'data': 'wasteAssessment',
+                'render': function ( wasteAssessment, type, account) {
+                    return wasteAssessment ? '<span class="glyphicon glyphicon-check"></span>' : '<span class="glyphicon glyphicon-unchecked"></span>';
+                },
+                'className': 'text-center'
+                },
+            {
+                'data': 'picturesTaken',
+                'render': function ( picturesTaken, type, account) {
+                    return picturesTaken ? '<span class="glyphicon glyphicon-check"></span>' : '<span class="glyphicon glyphicon-unchecked"></span>';
+                },
+                'className': 'text-center'
+
+                },
             {'data': 'notes'}
         ],
         'fnCreatedRow': function( nRow, aData, iDataIndex ) {

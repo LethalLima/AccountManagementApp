@@ -1,17 +1,16 @@
 package com.lethallima.accounts.model;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotation;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Account {
     private String accountNumber;
@@ -20,8 +19,13 @@ public class Account {
     private Timestamp attemptOneDate;
     private Timestamp attemptTwoDate;
     private Timestamp attemptThreeDate;
+    private boolean wasteAssessment;
+    private boolean picturesTaken;
     private String notes;
+    private Customer customer;
+    private User createdBy;
     private Timestamp createdAt;
+    private User updatedBy;
     private Timestamp updatedAt;
 
     @Id
@@ -85,6 +89,26 @@ public class Account {
     }
 
     @Basic
+    @Column(name = "waste_assessment", columnDefinition = "TINYINT(1)")
+    public boolean isWasteAssessment() {
+        return wasteAssessment;
+    }
+
+    public void setWasteAssessment(boolean wasteAssessment) {
+        this.wasteAssessment = wasteAssessment;
+    }
+
+    @Basic
+    @Column(name = "pictures_taken", columnDefinition = "TINYINT(1)")
+    public boolean isPicturesTaken() {
+        return picturesTaken;
+    }
+
+    public void setPicturesTaken(boolean picturesTaken) {
+        this.picturesTaken = picturesTaken;
+    }
+
+    @Basic
     @Column(name = "notes")
     public String getNotes() {
         return notes;
@@ -92,6 +116,22 @@ public class Account {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @OneToOne(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="customer_id")
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @OneToOne(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="created_by", referencedColumnName = "user_id")
+    public User getCreatedBy() {
+        return createdBy;
     }
 
     @Basic
@@ -104,6 +144,12 @@ public class Account {
         this.createdAt = createdAt;
     }
 
+    @OneToOne(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="updated_by", referencedColumnName = "user_id", nullable = true)
+    public User getUpdatedBy() {
+        return updatedBy;
+    }
+
     @Basic
     @Column(name = "updated_at")
     public Timestamp getUpdatedAt() {
@@ -114,12 +160,25 @@ public class Account {
         this.updatedAt = updatedAt;
     }
 
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public void setUpdatedBy(User updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(accountNumber, account.accountNumber) &&
+        return wasteAssessment == account.wasteAssessment &&
+                picturesTaken == account.picturesTaken &&
+                createdBy == account.createdBy &&
+                updatedBy == account.updatedBy &&
+                Objects.equals(accountNumber, account.accountNumber) &&
                 Objects.equals(address, account.address) &&
                 Objects.equals(binNotes, account.binNotes) &&
                 Objects.equals(attemptOneDate, account.attemptOneDate) &&
@@ -132,7 +191,6 @@ public class Account {
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(accountNumber, address, binNotes, attemptOneDate, attemptTwoDate, attemptThreeDate, notes, createdAt, updatedAt);
+        return Objects.hash(accountNumber, address, binNotes, attemptOneDate, attemptTwoDate, attemptThreeDate, wasteAssessment, picturesTaken, notes, createdBy, createdAt, updatedBy, updatedAt);
     }
 }
